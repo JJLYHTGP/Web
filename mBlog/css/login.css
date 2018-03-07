@@ -1,0 +1,59 @@
+ /* login */ 
+
+html{
+	background-color:black;
+	background-image:url('../images/bg/hero1.jpeg');
+	background-size:100%;
+	font-family:"Times New Roman",Georgia,Serif;
+	text-align:center;
+	background-attachment:fixed
+}
+
+ a:link,a:visited {
+	color:blue;
+}
+	
+.container {
+	margin:20px auto;
+	width:500px;
+	text-align:center;
+}
+
+h1 {
+	color: #6699A1;
+	font-size:10em;
+	-webkit-mask-image: url("../images/bg/grit.png");
+	letter-spacing:0.1em;
+	margin:0px;
+}
+
+
+h2 {
+	color: #6699A1;
+	font-size:3em;
+	-webkit-mask-image: url("../images/bg/grit.png");
+	margin:0px;
+}
+
+
+
+.input_table {
+	background:rgba(255,255,255,0.4);
+	border-radius:50px;
+	padding:20px 30px;
+}
+
+#signin_button{
+	float:left;
+}
+
+#regis_button{
+	float:right;
+}
+
+#button_2{
+	width:55%;
+	margin:0px auto 20px;
+}
+	
+ /* login end */

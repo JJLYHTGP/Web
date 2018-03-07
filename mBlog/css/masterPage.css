@@ -1,0 +1,33 @@
+*{margin:0px; padding:0px;}
+
+.container{
+	overflow:scroll;
+}
+
+table.masterIndex_table th, table.masterIndex_table td, table.masterIndex_table td a{
+	text-align:center;
+	//border:1px solid red;
+	width:200px;
+}
+
+table.masterIndex_table{
+	margin-top:10px;
+}
+
+table.masterIndex_table th{
+	font-size:1.3em;
+	color: #4D5139;
+	text-shadow:0 1px 1px black;
+ }
+
+.user_id{
+	font-size:1.2em;
+	color: #4D5139;
+	text-shadow:0 1px 2px black;
+}
+
+#managePage_tool_bar{
+	//border:1px solid red;
+	width:200px;
+	margin:50px auto;
+}

@@ -1,0 +1,87 @@
+
+html{
+	background-image:url('../images/bg/bg-025.gif');
+	background-image:url('../images/bg/hero1.jpeg');
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	text-align:center;
+	background-attachment:fixed
+}
+
+	
+.add_title {
+	margin:20px auto;
+	width:800px;
+	text-align:left;
+	text-transform:uppercase;
+}
+
+.add_container {
+	margin:0px auto;
+	width:800px;
+	text-align:left;
+}
+
+#time{
+	width:300px;
+	border-radius:20px;
+	background-color:rgba(255,255,255,0.5);
+	color: rgba(3,68,80,0.8);
+	font-size:1em;
+	-webkit-mask-image: url("../images/bg/grit.png");
+	letter-spacing:0.1em;
+	padding:5px 10px;
+	margin:10px auto;
+}
+
+.tool_bar{
+	//border:1px solid red;
+	margin-left:20px;
+	width:250px;
+}
+
+#publish_button {
+	background-color:rgba(0,0,0,0);
+	width:100px;
+	cursor: pointer;
+	margin: 10px 250px;
+	padding: 7px;
+	color:  #6699A1;
+	border-radius:10px;
+	font-size:1.1em;
+	text-align: center;
+	letter-spacing: .08em;
+	text-shadow: 0 0 2px rgba(0, 0, 0, 0.1), 0 1px 1px rgba(0, 0, 0, 0.1);
+	box-shadow:0 0 2px white;
+}
+
+
+#addOrReturnDiv{
+	//border:1px solid red;
+	margin:0px auto;
+	width:220px;
+	font-size:1.1em;
+}
+
+	td,th{
+		border-top: solid grey 1px;
+		margin: 0 0 0 0; 
+		padding: 25px;
+		text-align:left;
+	} 
+		
+		#title{
+			float:left;
+		}
+
+	table{
+		border-collapse: collapse; 
+		border: none;
+		width: 90%;
+		margin:0px auto;
+	} 
+	
+	.upload{
+		color:#6699A1;
+		padding-top:20px;
+		width:300px;
+	}

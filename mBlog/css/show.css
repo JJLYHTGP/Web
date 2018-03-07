@@ -1,0 +1,20 @@
+.tool_bar_show{
+	margin:0 auto;
+	width:400px;
+	margin-bottom:20px;
+}
+
+img.showImage_image{
+	max-height:1000px;
+	max-width:1000px;
+}
+
+
+html{
+	background-image:url('../images/bg/bg-025.gif');
+	//background-image:url('../images/bg/hero1.jpeg');
+	font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+	text-align:center;
+	background-repeat: repeat; 
+	background-attachment:fixed;
+}

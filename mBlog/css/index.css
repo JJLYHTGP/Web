@@ -1,0 +1,42 @@
+ /* index */ 
+ * {
+	 margin:0px;
+	 padding:0px;
+	 font-family:"Microsoft YaHei",Tahoma,Verdana,SimSun;
+
+  }
+  
+  html{
+	  	background-color:rgb(240,240,240);
+		background-image:url('../images/bg/bg-025.gif');
+  }
+ 
+	html .aboutMe{
+		float:left;
+		width:25%;
+		height:100%;
+		padding:40px 20px;
+		text-align:center;
+		margin:0px;
+		position:fixed;
+		background-image: url("../images/bg/bg-051.jpg");
+	}
+		
+	.container{
+		float:right;
+		width:75%;
+		text-align:center;
+		height:100%;
+	} 
+ 
+	table{
+		border-collapse: collapse; 
+		border: none;
+		width: 80%;
+		margin:0px auto;
+		position:relative; left:-30px;
+	} 
+	
+	
+	
+ /* index end */
