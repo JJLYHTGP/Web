@@ -20,7 +20,7 @@ contentType="text/html; charset=utf-8"%>
 	 	password2 = request.getParameter("password2");
 	 	moreinfo = request.getParameter("moreinfo");
 
-			Connection con = DriverManager.getConnection(connectString,"mBlog", "2287");
+			Connection con = DriverManager.getConnection(connectString,"******", "******");
 			Statement stmt = con.createStatement();
 			String imagePath="";
 			String imageName="";

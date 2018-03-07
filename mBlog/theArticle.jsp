@@ -21,7 +21,7 @@ contentType="text/html; charset=utf-8" %>
 	if(mode.equals("VISITOR")){
 		deleteOption="";
 	}
-	con = DriverManager.getConnection(connectString,"mBlog", "2287");
+	con = DriverManager.getConnection(connectString,"******", "******");
 	stmt = con.createStatement();
 	stmt = con.createStatement(); 
 	

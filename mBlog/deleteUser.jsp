@@ -17,7 +17,7 @@ contentType="text/html; charset=utf-8"%>
 		uid= (String)session.getAttribute("sUID");
 	}*/
 	Class.forName("com.mysql.jdbc.Driver"); 
-	Connection con = DriverManager.getConnection(connectString,"mBlog","2287"); 
+	Connection con = DriverManager.getConnection(connectString,"******","******"); 
 	Statement stmt = con.createStatement(); 
 	try{ 
 		String sql="delete from users where uid="+uid+";";

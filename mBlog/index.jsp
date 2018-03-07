@@ -65,7 +65,7 @@ contentType="text/html; charset=utf-8" %>
 	int pgnext =  pgno+1;	//下一页
 	StringBuilder table = new StringBuilder(); 
 	try{
-		con=DriverManager.getConnection(connectString, "mBlog", "2287"); 
+		con=DriverManager.getConnection(connectString, "******", "******"); 
 		stmt=con.createStatement(); 
 
 		String sql=String.format("select * from article  where uid = %s limit %d,%d; ",uid,pgno*pgcnt,pgcnt); 

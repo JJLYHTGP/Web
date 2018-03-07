@@ -29,7 +29,7 @@
   		else if(request.getParameter("visit")!=null){
   			session.removeAttribute("LoginMsg");
   			session.setAttribute("MODE","VISITOR");
-  			con = DriverManager.getConnection(connectString,"mBlog", "2287");
+  			con = DriverManager.getConnection(connectString,"******", "******");
 			stmt = con.createStatement();
   			try{
   				user_uname=request.getParameter("BlogName");
@@ -54,7 +54,7 @@
 			}
   		}
   		else{
-			con = DriverManager.getConnection(connectString,"mBlog", "2287");
+			con = DriverManager.getConnection(connectString,"******", "******");
 			stmt = con.createStatement();
 			String bokePwd = request.getParameter("num");
 			String name = request.getParameter("name");

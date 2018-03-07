@@ -18,7 +18,7 @@ contentType="text/html; charset=utf-8"%>
 	if(request.getMethod().equalsIgnoreCase("post")){ 
 	 	title = request.getParameter("title"); 
 	 	content = request.getParameter("content"); 
-		con = DriverManager.getConnection(connectString,"mBlog", "2287"); 
+		con = DriverManager.getConnection(connectString,"****", "****"); 
 		stmt = con.createStatement(); 
 		try{ 
 			String fmt="insert into article(uid,title,content,publishDate) values('%s','%s','%s',now())"; 

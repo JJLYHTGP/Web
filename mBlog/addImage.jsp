@@ -23,7 +23,7 @@ contentType="text/html; charset=utf-8"%>
 	else{
 	if(request.getMethod().equalsIgnoreCase("post")){ 
 	 	content = request.getParameter("content"); 
-		con = DriverManager.getConnection(connectString,"mBlog", "2287"); 
+		con = DriverManager.getConnection(connectString,"******", "******"); 
 		stmt = con.createStatement(); 
 		String imagePath=""; 
 		String imageName=""; 

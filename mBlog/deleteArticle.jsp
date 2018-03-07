@@ -13,7 +13,7 @@ contentType="text/html; charset=utf-8"%>
 	+ "?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8";  
 	String articleId= request.getParameter("articleId");
 	Class.forName("com.mysql.jdbc.Driver"); 
-	Connection con = DriverManager.getConnection(connectString,"mBlog","2287"); 
+	Connection con = DriverManager.getConnection(connectString,"******","******"); 
 	Statement stmt = con.createStatement(); 
 	try{ 
 		String sql="delete from article where articleId="+articleId+";";

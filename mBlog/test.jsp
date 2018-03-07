@@ -7,7 +7,7 @@ contentType="text/html; charset=utf-8" %>
 	String connectString = "jdbc:mysql://123.207.47.128:3306/mblog" 
 	+ "?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8"; 
 	try{
-		Connection con = DriverManager.getConnection(connectString,"mBlog", "2287");
+		Connection con = DriverManager.getConnection(connectString,"******", "******");
 		Statement stmt = con.createStatement();  
 		stmt.close();  
 		con.close();

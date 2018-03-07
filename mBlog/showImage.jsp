@@ -12,7 +12,7 @@ contentType="text/html; charset=utf-8" %>
 	
 	String uname= (String)request.getParameter("uname");	//得到Uname
 	Class.forName("com.mysql.jdbc.Driver"); 
-	Connection con = DriverManager.getConnection(connectString,"mBlog", "2287");
+	Connection con = DriverManager.getConnection(connectString,"******", "******");
 	Statement stmt = con.createStatement();
 	stmt = con.createStatement(); 
 	String content = "";

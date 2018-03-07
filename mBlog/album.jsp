@@ -48,7 +48,7 @@ contentType="text/html; charset=utf-8" %>
 	//	response.sendRedirect("viewAlbum.jsp?uid="+uid);
 	//}
 	try{
-		con=DriverManager.getConnection(connectString, "mBlog", "2287"); 
+		con=DriverManager.getConnection(connectString, "******", "******"); 
 		stmt=con.createStatement(); 
 		
 		String sql=String.format("select * from users  where uid = %s ; ",uid); 

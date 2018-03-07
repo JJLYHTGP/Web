@@ -16,7 +16,7 @@ contentType="text/html; charset=utf-8"%>
 	}else{  
 	articleId=(String) request.getParameter("articleId");	
 	//得到articleID
-	con = DriverManager.getConnection(connectString,"mBlog", "2287");
+	con = DriverManager.getConnection(connectString,"******", "******");
 	stmt = con.createStatement();
 	
 	try{ 
@@ -32,7 +32,7 @@ contentType="text/html; charset=utf-8"%>
 		msg = e.getMessage(); 
 	}
 	if(request.getMethod().equalsIgnoreCase("post")){
-		con = DriverManager.getConnection(connectString,"mBlog", "2287");
+		con = DriverManager.getConnection(connectString,"******", "******");
 		stmt = con.createStatement(); 
 	 	title = request.getParameter("title"); 
 	 	content = request.getParameter("content"); 

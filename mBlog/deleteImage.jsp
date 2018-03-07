@@ -14,7 +14,7 @@ contentType="text/html; charset=utf-8"%>
 	+ "?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8";  
 	String imageName= request.getParameter("imgName");
 	Class.forName("com.mysql.jdbc.Driver"); 
-	Connection con = DriverManager.getConnection(connectString,"mBlog","2287"); 
+	Connection con = DriverManager.getConnection(connectString,"******","******"); 
 	Statement stmt = con.createStatement(); 
 	try{ 
 		sql="delete from album where ImagePath='"+imageName+"';";

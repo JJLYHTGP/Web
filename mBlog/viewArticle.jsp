@@ -46,7 +46,7 @@ contentType="text/html; charset=utf-8" %>
 	 if(uid!=null && mode!=null){	
 	try {
         con = DriverManager.getConnection(connectString,
-                            "mBlog", "2287");
+                            "****", "****");
         stmt = con.createStatement();
         sql="select * from article where uid = "+uid;
         if (request.getMethod().equalsIgnoreCase("post")){
