@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>五子棋</title>
+		<style>
+			#mycanvas{
+				display: block;
+				border: solid lightgray 1px;
+				margin: auto; 
+				background:darkgoldenrod;
+				box-shadow: 2px 2px 2px ;
+				-webkit-box-shadow: 2px 2px 2px;
+			}
+			#resetBtn{
+				visibility: hidden;
+			}
+		</style>
+		<script src="EventUtil.js"></script>
+		<!--<script src="PositionUtil.js"></script>-->
+	</head>
+	<body>
+		<p id="note">游戏开始，黑子先行</p>
+		<canvas id="mycanvas" width="600px"  height="600px"  >
+			Your browser does not support canvas.
+		</canvas>
+		<div id="mycanvasDiv">
+		</div>
+		<button id="resetBtn">重置</button>
+		<button id="cancelBtn">悔棋</button>
+		<button id="setBtn">确定</button>
+		<script>
+			var can=document.getElementById("mycanvas");
+			var canWid=can.width;
+			var canHei=can.height;
+			var chessBoard=new Array();
+			var color=false;// false 代表黑子  true代表白子 
+			var pos={};// 存储落下的棋子的位置  未选择确定前可以悔棋重新落子
+			var setBtn=document.getElementById("setBtn");
+			var note=document.getElementById("note");
+			var resetBtn= document.getElementById("resetBtn");
+			var cancelBtn=document.getElementById("cancelBtn");
+			var context=can.getContext("2d");
+			var ifCanvas= false;
+			var lastImg;
+			var ifSet=false;
+			var emptyBoard;// 存储清空的棋盘
+			var gameover=false;
+			
+			gameInit();
+			
+			
+			
+			EventUtil.addHandler(can,'click',function(event){
+				
+				if(event){
+					pos=getMouseClick(event);
+					// 如果点击的是有效的棋盘位置并且该处没有棋子,并且此时还没有下过子,落子
+					if(pos['ifvalid'] && !ifSet && !gameover){
+						lastImg=context.getImageData(0,0,canWid,canHei);
+						setChessPiece(pos,color);
+						ifSet=true;
+						//console.log(color);
+					}else if(ifSet){
+						note.innerHTML='您已下子';
+					}else if(!pos['ifvalid']){
+						note.innerHTML='此处已有棋子';
+					}
+				}
+			});
+			
+			// 重置
+			EventUtil.addHandler(resetBtn,'click',function(event){	
+				clearBoard();
+				resetBtn.style.visibility='hidden';
+				cancelBtn.style.visibility='visible';
+			});
+			
+			// 一旦确定落子 即改变颜色 清除落子记录 并判断输赢
+			EventUtil.addHandler(setBtn,'click',function(event){	
+				var ifgameover;
+				if(ifSet){
+					ifSet=false;
+					color=!color;
+					if(color){
+						ifgameover=ifwin('black',0);
+						note.innerHTML='白';
+					}else{
+						ifgameover=ifwin('white',1);
+						note.innerHTML='黑';
+					}
+					lastImg=context.getImageData(0,0,canWid,canHei);
+					// 判断输赢 如果赢了 出现重置键
+					
+					//棋盘满了
+					if(ifgameover==-1){
+				 		note.innerHTML='游戏结束！棋盘已满';
+				 		resetBtn.style.visibility='visible';
+				 		cancelBtn.style.visibility='hidden';
+				 	}else if(ifgameover==0){
+				 		gameover=true;
+				 		note.innerHTML='游戏结束！黑子胜利';
+				 		resetBtn.style.visibility='visible';
+				 		cancelBtn.style.visibility='hidden';
+				 	}else if(ifgameover==1){
+				 		gameover=true;
+				 		note.innerHTML='游戏结束！白子胜利';
+				 		resetBtn.style.visibility='visible';
+				 		cancelBtn.style.visibility='hidden';
+				 	}
+					 
+				}else{
+					note.innerHTML='您尚未下子';
+				}
+				
+			});
+			
+			
+			// 悔棋
+			EventUtil.addHandler(cancelBtn,'click',function(){
+				 
+				context.putImageData(lastImg,0,0);
+				lastImg=context.getImageData(0,0,canWid,canHei);
+				ifSet=false;
+				chessBoard[pos['x']][pos['y']]=false;
+				if(color){
+					note.innerHTML='白';
+				}else{
+					note.innerHTML='黑';
+				}
+			});
+			
+			
+			// 使用canvas绘制棋盘
+			function drawChessBoard(context){
+				context.beginPath();
+				for(var i=0;i<15;i++){
+					context.moveTo(20,20+i*40);
+					context.lineTo(580,20+i*40);
+					context.stroke();
+					context.moveTo(20+i*40,20);
+					context.lineTo(20+i*40,580);
+					context.stroke();		
+				}
+				context.closePath();
+				emptyBoard=context.getImageData(0,0,canWid,canHei);
+			}
+			
+			/* getMouseClick
+			 * 传入点击事件event 返回在棋盘点击的位置 {x,y} 对应第x列 第y行
+			 * */
+			function getMouseClick(event){
+				if(event){
+					event=EventUtil.getEvent(event);
+					// 落子相对棋盘原点的位置
+					var xcnt=event.pageX-can.offsetLeft-20;
+					var ycnt=event.pageY-can.offsetTop-20;
+					//console.log(can.offsetLeft,can.offsetTop);
+					//console.log(Math.round(xcnt/40) , Math.round(ycnt/40));
+					//console.log(Math.round(xcnt/40)>=0 && Math.round(ycnt/40)>=0
+					//	&& Math.round(xcnt/40)<=14 && Math.round(ycnt/40)<=14);
+					return {
+						x: Math.round(xcnt/40),
+						y: Math.round(ycnt/40),
+						ifvalid:Math.round(xcnt/40)>=0 && Math.round(ycnt/40)>=0
+						&& Math.round(xcnt/40)<=14 && Math.round(ycnt/40)<=14 
+						&& !chessBoard[Math.round(xcnt/40)][Math.round(ycnt/40)]
+					}
+				}
+				return{
+					x:-1,
+					y:-1,
+					ifvalid:false
+				}
+			}
+			
+			
+			/* setChessPiece 
+			 * 传入棋子颜色和坐标 落子
+			 * */
+			function setChessPiece(pos,col){
+				var color = col? 'white':'black';
+				context.beginPath();
+				context.arc(pos['x']*40+20,pos['y']*40+20,15,0,2*Math.PI,false);
+				context.fillStyle = color;
+				context.strokeStyle=color;
+				context.fill();
+				context.stroke();
+				context.closePath();
+				chessBoard[pos['x']][pos['y']]=color;
+			}
+			
+			function ifwin(thecolor,returnCode){
+				
+				var sum=0;
+				for(var i=0;i<chessBoard.length;i++){
+					for(var j=0;j<chessBoard[i].length;j++){
+						if(chessBoard[i][j]){
+							sum++;
+						}
+						if(chessBoard[i][j]==thecolor){
+							if( j+4<15 && chessBoard[i][j]==thecolor 
+							&& chessBoard[i][j+1]==thecolor && chessBoard[i][j+2]==thecolor
+							&& chessBoard[i][j+3]==thecolor && chessBoard[i][j+4]==thecolor){
+								return returnCode;
+							}else if( i+4<15 && chessBoard[i][j]==thecolor 
+							&& chessBoard[i+1][j]==thecolor && chessBoard[i+2][j]==thecolor
+							&& chessBoard[i+3][j]==thecolor && chessBoard[i+4][j]==thecolor){
+								return returnCode;
+							}else if( i+4<15 && j+4<15 && chessBoard[i][j]==thecolor 
+							&& chessBoard[i+1][j+1]==thecolor && chessBoard[i+2][j+2]==thecolor
+							&& chessBoard[i+3][j+3]==thecolor && chessBoard[i+4][j+4]==thecolor){
+								return returnCode;
+							}
+						}
+					}
+				}
+				// 棋盘满了但是没有战果
+				if(sum==225){
+					return -1;
+				}
+				
+				
+				return 2;
+			}
+			
+			
+			function gameInit(){
+				ifCanvas=true;
+				gameover=false;
+				// 确定浏览器是否支持canvas元素并绘制棋盘
+				if(can.getContext){
+					
+					// 使用canvas绘制棋盘
+					drawChessBoard(context);
+					clearBoard();
+				} // 浏览器不支持canvas元素 则降级使用div渲染
+				else{
+					// 使用div绘制棋盘
+					drawChessBoardDiv();
+				}
+				
+			}
+			
+			function clearBoard(){
+				note.innerHTML='游戏开始，黑子先行';
+				// 清空棋子
+				for(var i=0;i<15;i++){
+					chessBoard[i]=new Array();
+					for(var j=0;j<15;j++){
+						chessBoard[i][j]=false;
+					}
+				}
+				context.putImageData(emptyBoard,0,0);
+			}
+			
+			
+			
+			// 使用div绘制棋盘
+			function drawChessBoardDiv(){
+				
+			}
+			
+		</script>
+	</body>
+</html>
