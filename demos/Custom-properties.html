@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>CSS自定义属性</title>
+    <style type="text/css">
+        :root {
+            --main-font : STKaiti;
+            --font-size-base: 16px;
+            --brand-color: blue;
+            font-weight: bold; 
+        }
+        .refer {
+            font-family: STKaiti;
+            font-size: 16px;
+            font-family: var(--main-font);
+            font-size: var(--font-size-base);
+            color: var(--main-color, gray);
+            font-weight: var(--brand-color);
+        }
+        article {
+            --main-font : YouYuan;
+            --font-size-base: 18px;
+            font-family: var(--main-font);
+            font-size: var(--font-size-base);
+            color: var(--main-color);
+        }
+    </style>
+    <script type="text/javascript">
+        function changeProperties() {
+            var rootElement = document.documentElement;
+            var styles = getComputedStyle(rootElement);
+            var mainFont = styles.getPropertyValue('--font-size-base');
+            var mainColor = styles.getPropertyValue('--color');
+            console.log(styles, mainColor, mainFont);
+            rootElement.style.setProperty('--font-size-base', '28px');
+            rootElement.style.setProperty('--main-color', '#cdf');
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <h2>CSS自定义属性</h2>
+        <p class="refer">如果你刚好在用支持自定义变量的CSS预处理器，如Sass（syntactically awesome stylesheets）或Less，你可能会下意识拒绝CSS变量。千万别这么做。因为原生的CSS变量比任何一个预处理器能实现的功能都要强大和灵活。为了强调它们之间（原生CSS变量和预处理器自定义变量）的差异，我会把它叫作“自定义属性”，而不用“CSS变量”。</p>
+        <article>
+        在2015年，一个大家期待已久的名为“用作层叠式变量的自定义属性”（Custom Properties for Cascading Variables）的CSS规范终于发布为“候选推荐标准”（Candidate Recommendation）。这套规范引入了CSS中“变量”的概念，支持一种新的基于上下文的动态样式定义方式。你可以声明一个变量，再给它赋值，然后就可以在样式表的任何地方引用它。你可以通过这样的方式，减少样式表中的重复代码，以及后续你会看到的一些有用的应用场景。
+        </article>
+        <button onclick="changeProperties()">通过JavaScript改变自定义属性的值</button>
+    </div>
+</body>
+</html>
